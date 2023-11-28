@@ -27,7 +27,7 @@ public class KafkaConfig {
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, property.getBootstrapServers(),
                 ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
                 ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
-                JsonDeserializer.TRUSTED_PACKAGES, "codaholic.kafka"
+                JsonDeserializer.TRUSTED_PACKAGES, "evento"
         );
     }
 

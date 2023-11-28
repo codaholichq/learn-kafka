@@ -6,5 +6,7 @@ spring:
       group-id: user-group
       client-id: codaholic-client
       enable-auto-commit: true
+      properties:
+        spring.json.trusted.packages: evento.*
 server:
   port: 3050

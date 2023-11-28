@@ -6,9 +6,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
-//@KafkaListener(
-//        topics = KafkaConstants.USER_TOPIC,
-//        groupId = KafkaConstants.GROUP_ID)
 public class KafkaConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(KafkaConsumer.class);

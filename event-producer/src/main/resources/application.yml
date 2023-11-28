@@ -1,0 +1,14 @@
+spring:
+  kafka:
+    bootstrap-servers: ${BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      client-id: codaholic-client
+      properties:
+        acks: 1
+        spring:
+          json:
+            add:
+              type:
+                headers: false
+server:
+  port: 3055

@@ -1,0 +1,10 @@
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: ${BOOTSTRAP_SERVERS:localhost:9092}
+      auto-offset-reset: earliest
+      group-id: user-group
+      client-id: codaholic-client
+      enable-auto-commit: true
+server:
+  port: 3050

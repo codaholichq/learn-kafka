@@ -5,10 +5,6 @@ spring:
       client-id: codaholic-client
       properties:
         acks: 1
-        spring:
-          json:
-            add:
-              type:
-                headers: false
+        spring.json.add.type.headers: false
 server:
   port: 3055

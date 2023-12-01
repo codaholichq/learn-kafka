@@ -5,7 +5,6 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -14,7 +13,6 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.Map;
 
-@EnableKafka
 @Configuration
 public class KafkaConfig {
 
@@ -26,24 +24,29 @@ public class KafkaConfig {
 
     @Bean
     public NewTopic userTopic() {
-        return TopicBuilder.name(KafkaConstants.USER_TOPIC).build();
+        return TopicBuilder.name(KafkaConstants.USER_TOPIC)
+                .partitions(3)
+                .replicas(1)
+                .compact()
+                .build();
     }
 
-    public Map<String, Object> config(){
+    public Map<String, Object> producerConfig(){
         return Map.of(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, property.getBootstrapServers(),
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class,
-                ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class
+                ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class,
+                JsonSerializer.TYPE_MAPPINGS, "User:evento.User"
         );
     }
 
     @Bean
-    public ProducerFactory<String, User> producerFactory(){
-        return new DefaultKafkaProducerFactory<>(config());
+    public ProducerFactory<String, Object> producerFactory(){
+        return new DefaultKafkaProducerFactory<>(producerConfig());
     }
 
     @Bean
-    public KafkaTemplate<String, User> kafkaTemplate() {
+    public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }

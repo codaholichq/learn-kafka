@@ -1,5 +1,6 @@
 package evento;
 
+import evento.model.User;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -24,11 +24,7 @@ public class KafkaConfig {
 
     @Bean
     public NewTopic userTopic() {
-        return TopicBuilder.name(KafkaConstants.USER_TOPIC)
-                .partitions(3)
-                .replicas(1)
-                .compact()
-                .build();
+        return TopicBuilder.name(KafkaConstants.USER_TOPIC).build();
     }
 
     public Map<String, Object> producerConfig(){

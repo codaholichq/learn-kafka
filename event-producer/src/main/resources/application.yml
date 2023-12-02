@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers: ${BOOTSTRAP_SERVERS:localhost:9092}
+    bootstrap-servers: ${KAFKA_URL:localhost}:9092
     producer:
       client-id: codaholic-client
       properties:

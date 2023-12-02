@@ -5,7 +5,6 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
@@ -24,7 +23,7 @@ public class KafkaConfig {
 
     @Bean
     public NewTopic userTopic() {
-        return TopicBuilder.name(KafkaConstants.USER_TOPIC).build();
+        return new NewTopic(KafkaConstants.USER_TOPIC, 3, (short) 1);
     }
 
     public Map<String, Object> producerConfig(){

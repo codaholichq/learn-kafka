@@ -23,9 +23,9 @@ public class KafkaProducer {
             CompletableFuture<SendResult<String, Object>> future = template.send(KafkaConstants.USER_TOPIC, user);
             future.whenComplete((result, ex) -> {
                 if (ex == null) {
-                    log.info("Sent message=[{}] with offset=[{}]", user.toString(), result.getRecordMetadata().offset());
+                    log.info("Sent message: {} with offset: {}", user.toString(), result.getRecordMetadata().offset());
                 } else {
-                    log.error("Unable to send message=[{}] due to: {}", user.toString(), ex.getMessage());
+                    log.error("Unable to send message: {} due to: {}", user.toString(), ex.getMessage());
                 }
             });
 
